@@ -7,29 +7,23 @@ import About from './components/pages/About';
 //import { Container, Col, Row } from "react-bootstrap";
 //import * as bs from "react-bootstrap";
 import './App.css';
-import {v4 as uuid} from 'uuid'; //uuid package installed for generating unique ids
+//import {v4 as uuid} from 'uuid'; uuid package installed for generating unique ids
+import axios from 'axios';
 
 class App extends Component {
   state = {  /*This is the way set up state*/
     todos: [
-      {
-        id: uuid(),
-        title: "Take out the trash",
+      /*{
+        id: 1,
+        title: 'Take the trash out',
         completed: false
-      },
-      {
-        id: uuid(),
-        title: "Go to market",
-        completed: true
-      },
-      {
-        id: uuid(),
-        title: "Complete homework",
-        completed: false
-      }
+      }*/
     ]
   }
 
+  componentDidMount() {
+      axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10').then(res => this.setState({todos: res.data})) // here with axios we have fetched some json posts data which acts like a server/db
+  }
   markComplete = ( id ) => {
     this.setState ({todos: this.state.todos.map(todo => {
       if(todo.id===id) {
@@ -41,17 +35,18 @@ class App extends Component {
   }
 
   delTodo = (id) => {
-    this.setState({ todos: [...this.state.todos.filter(todo => todo.id!==id)]  //...is speread opearation where we are creatinga copy of an object by iteration it. basically here we are creating a copy of our state obhect and and when clicked the button we are creating an object without the id which was clicked so it feels like it was deleted
-    })
+   // this.setState({ todos: [...this.state.todos.filter(todo => todo.id!==id)]})  //...is speread opearation where we are creatinga copy of an object by iteration it. basically here we are creating a copy of our state obhect and and when clicked the button we are creating an object without the id which was clicked so it feels like it was deleted
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`).then(res => this.setState({ todos: [...this.state.todos.filter(todo => todo.id!==id)]}) );
   }
 
   addTodo = (title) => {
-    const newTodo = {
+    /*const newTodo = {
       id: uuid(),
       title,
       completed: false
-    }
-    this.setState({ todos: [...this.state.todos, newTodo] });
+    }*/
+    axios.post('https://jsonplaceholder.typicode.com/todos', {title: title, completed: false}).then(res => this.setState({ todos: [...this.state.todos, res.data] }));
+    //this.setState({ todos: [...this.state.todos, newTodo] })
   }
 
   render() { 
