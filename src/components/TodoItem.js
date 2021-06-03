@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class TodoItem extends Component {
     
-getStyle = () => {
+getStyle = () => { //style with arrow function
     return {  
             background: '#f4f4f4',
             padding: '10px',
@@ -20,13 +20,23 @@ render() {
         return (
             <div style={this.getStyle()}> {/*<div style={ {backgroundColor: '#f4f4f4'} }> inline style  or like a function style={itemStyle}*/}
              <h5>
-                 <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/>  {/* Eventhandling such as onClick, onSubmit, preventDefault etc*/}
+                 <input style={{padding: '1px 3px', margin: '1px 3px'}} type="checkbox" onChange={this.props.markComplete.bind(this, id)}/>  {/* Eventhandling such as onClick, onSubmit, preventDefault etc*/}
                  {title}
-                 <button >D</button>
+                 <button style={btnStyle} onClick={this.props.delTodo.bind(this, id)}>D</button>
              </h5>
             </div>
         );
     }
+}
+
+const btnStyle = { // style with variable
+    background: '#ff5000',
+    color: '#fff',
+    border: 'none',
+    padding: '5px 8px',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    float: 'right'
 }
 
 TodoItem.propTypes = {

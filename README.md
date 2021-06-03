@@ -1,13 +1,13 @@
-# Getting Started with Create React App
+# Todo List web application with React classbased appraoch
 
-command: npx create-react-app .
+## 'npx create-react-app .'
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn start` or 'npm start'
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -71,12 +71,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-Github: 
-create a new repo in github without initialising
-echo "# todo-app-reactclass" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/ayon120/todo-app-reactclass.git
-git push -u origin main
+## Github: 
+1. create a new repo in github without initialising
+2. echo "# todo-app-reactclass" >> README.md
+3. git init
+4. git add README.md
+5. git commit -m "first commit"
+6. git branch -M main
+7. git remote add origin https://github.com/ayon120/todo-app-reactclass.git
+8. git push -u origin main
+
+## React with Bootstrap
+
+[https://reactstrap.github.io/]

@@ -1,22 +1,27 @@
 import React, {Component} from 'react';
 import Todos from './components/Todos'; //App.js is the main file so to access the todos componets we first have to import it here
+import Header from './components/layout/Header';
+import AddTodo from './components/AddTodo';
+//import { Container, Col, Row } from "react-bootstrap";
+//import * as bs from "react-bootstrap";
 import './App.css';
+import {v4 as uuid} from 'uuid'; //uuid package installed for generating unique ids
 
 class App extends Component {
   state = {  /*This is the way set up state*/
     todos: [
       {
-        id: 1,
+        id: uuid(),
         title: "Take out the trash",
         completed: false
       },
       {
-        id: 2,
+        id: uuid(),
         title: "Go to market",
         completed: true
       },
       {
-        id: 3,
+        id: uuid(),
         title: "Complete homework",
         completed: false
       }
@@ -33,10 +38,28 @@ class App extends Component {
   })
   }
 
+  delTodo = (id) => {
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id!==id)]  //...is speread opearation where we are creatinga copy of an object by iteration it. basically here we are creating a copy of our state obhect and and when clicked the button we are creating an object without the id which was clicked so it feels like it was deleted
+    })
+  }
+
+  addTodo = (title) => {
+    const newTodo = {
+      id: uuid(),
+      title,
+      completed: false
+    }
+    this.setState({ todos: [...this.state.todos, newTodo] });
+  }
+
   render() { 
     return ( 
       <div className = "App" > 
-        <Todos todos={this.state.todos} markComplete={this.markComplete} /> {/*This is the way call a component, with todos function we are sending the state as props/property for Todos class to access which in todos, todos sends to todoitems*/}
+        <div className = "container">
+          <Header />
+          <AddTodo addTodo={this.addTodo} />
+          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/> {/*This is the way call a component, with todos function we are sending the state as props/property for Todos class to access which in todos, todos sends to todoitems*/}
+        </div>
       </div>
     );
   }

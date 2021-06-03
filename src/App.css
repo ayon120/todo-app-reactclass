@@ -7,9 +7,33 @@
 body{
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
+
 }
 
 a{
   color: #333;
   text-decoration: none;
+}
+
+.container {
+  padding: 0;
+}
+
+.addinput {
+  margin: 5px;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px;
+  border-radius: 2px;
+  background: #555;
+  color: #fff;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btn:hover {
+  background: #333;
 }

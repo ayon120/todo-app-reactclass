@@ -10,7 +10,7 @@ class Todos extends Component {
     render() {  
         //console.log(this.props.todos);
         return this.props.todos.map((todo) => (
-             <TodoItem key= {todo.id} todo= {todo} markComplete={this.props.markComplete}/>  /* map fuction is more like for each where we are iterating through the props array & key is needed for each element to tracklist items, we are also sendind props, todo is a prop where we are sending our previous props and sending them direcly and markComplete is also created here for changing state, you can only change state as where you declared state */
+             <TodoItem key= {todo.id} todo= {todo} markComplete={this.props.markComplete} delTodo={this.props.delTodo}/>  /* map fuction is more like for each where we are iterating through the props array & key is needed for each element to tracklist items, we are also sendind props, todo is a prop where we are sending our previous props and sending them direcly and markComplete is also created here for changing state, you can only change state as where you declared state */
         ));
     }
 }
