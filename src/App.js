@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Todos from './components/Todos'; //App.js is the main file so to access the todos componets we first have to import it here
 import Header from './components/layout/Header';
 import AddTodo from './components/AddTodo';
+import About from './components/pages/About';
 //import { Container, Col, Row } from "react-bootstrap";
 //import * as bs from "react-bootstrap";
 import './App.css';
@@ -54,13 +56,21 @@ class App extends Component {
 
   render() { 
     return ( 
+    <Router> 
       <div className = "App" > 
         <div className = "container">
           <Header />
-          <AddTodo addTodo={this.addTodo} />
-          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/> {/*This is the way call a component, with todos function we are sending the state as props/property for Todos class to access which in todos, todos sends to todoitems*/}
+          <Route exact path="/" render={props => (    //routed homepage with 2 components with exact which distinguished the pages
+            <React.Fragment>
+              <AddTodo addTodo={this.addTodo} />
+              <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/> {/*This is the way call a component, with todos function we are sending the state as props/property for Todos class to access which in todos, todos sends to todoitems*/}
+            </React.Fragment>
+          ) } />
+          
+          <Route path = "/about" component={About} />
         </div>
       </div>
+      </Router> 
     );
   }
 }
